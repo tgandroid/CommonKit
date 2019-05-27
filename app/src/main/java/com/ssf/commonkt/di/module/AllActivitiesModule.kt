@@ -3,12 +3,11 @@ package com.ssf.commonkt.di.module
 import android.arch.lifecycle.ViewModelProvider
 import com.ssf.commonkt.di.ViewModelFactory
 import com.ssf.commonkt.di.module.main.MainViewModelModule
+import com.ssf.commonkt.di.module.welcome.WelcomeViewModelModule
 import com.ssf.commonkt.di.scope.ActivityScope
-import com.ssf.commonkt.ui.lazy.LazyFragmentActivity
 import com.ssf.commonkt.ui.main.MainActivity
 import com.ssf.commonkt.ui.rv.RvDemoActivity
 import com.ssf.commonkt.ui.welcome.WelcomeActivity
-import com.ssf.commonkt.ui.welcome.WelcomeViewModelModule
 import dagger.Binds
 import dagger.Module
 import dagger.android.ContributesAndroidInjector
@@ -21,7 +20,6 @@ import dagger.android.ContributesAndroidInjector
 @Module
 internal abstract class AllActivitiesModule {
 
-
     @Binds
     abstract fun bindViewModelFactory(factory: ViewModelFactory): ViewModelProvider.Factory
 
@@ -32,10 +30,6 @@ internal abstract class AllActivitiesModule {
     @ActivityScope
     @ContributesAndroidInjector(modules = [MainViewModelModule::class])
     abstract fun contributeMainActivityInjector(): MainActivity
-
-    @ActivityScope
-    @ContributesAndroidInjector(modules = [FragmentInjectorModule::class])
-    abstract fun contributeLazyFragmentActivityInjector(): LazyFragmentActivity
 
     @ActivityScope
     @ContributesAndroidInjector(modules = [MainViewModelModule::class])

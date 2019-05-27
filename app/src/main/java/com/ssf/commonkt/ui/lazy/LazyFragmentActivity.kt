@@ -5,9 +5,9 @@ import android.support.v4.app.FragmentPagerAdapter
 import android.util.SparseArray
 import com.ssf.commonkt.R
 import com.ssf.commonkt.databinding.ActivityLazyBinding
-import com.ssf.framework.main.mvvm.activity.MVVMActivity
+import com.ssf.framework.main.mvvm.activity.SupportVMActivity
 
-class LazyFragmentActivity : MVVMActivity<ActivityLazyBinding>(R.layout.activity_lazy) {
+class LazyFragmentActivity : SupportVMActivity<ActivityLazyBinding>(R.layout.activity_lazy) {
     override fun init() {
         //选择注释下面的方式来查看两种请看下的加载生命周期
         //ViewPager模式
@@ -20,7 +20,7 @@ class LazyFragmentActivity : MVVMActivity<ActivityLazyBinding>(R.layout.activity
     override fun initStatusBar() {
     }
 
-    private fun initPageModel(){
+    private fun initPageModel() {
         val viewPager = binding.viewPager
 
         val titles = arrayOf("page1", "page2", "page3", "page4")
@@ -49,7 +49,7 @@ class LazyFragmentActivity : MVVMActivity<ActivityLazyBinding>(R.layout.activity
         binding.tabLayout.setupWithViewPager(viewPager)
     }
 
-    private fun initNoramlModel(){
+    private fun initNoramlModel() {
         supportFragmentManager.beginTransaction().replace(android.R.id.content, SampleLazyLogFragment.newInstance("page1"))
                 .commit()
     }

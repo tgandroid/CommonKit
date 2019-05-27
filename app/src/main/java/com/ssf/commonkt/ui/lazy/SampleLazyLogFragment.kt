@@ -4,10 +4,10 @@ import android.databinding.ViewDataBinding
 import android.os.Bundle
 import android.view.View
 import com.ssf.commonkt.R
-import com.ssf.framework.main.mvvm.activity.MVVMFragment
+import com.ssf.framework.main.mvvm.activity.SupportVMFragment
 import com.xm.xlog.KLog
 
-class SampleLazyLogFragment : MVVMFragment<ViewDataBinding>(R.layout.fragment_sample_lazy) {
+class SampleLazyLogFragment : SupportVMFragment<ViewDataBinding>(R.layout.fragment_sample_lazy) {
     companion object {
         fun newInstance(title: String): SampleLazyLogFragment {
             val fragment = SampleLazyLogFragment()

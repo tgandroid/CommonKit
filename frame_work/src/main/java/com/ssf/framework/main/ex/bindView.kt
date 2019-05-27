@@ -21,18 +21,22 @@ public fun <V : View> Activity.bindView(id: Int)
 public fun <V : View> Dialog.bindView(id: Int)
         : ReadOnlyProperty<Dialog, V> = required(id, viewFinder)
 
+@Deprecated("受Fragment生命周期影响，lazy形式的赋值，在view重建后无法修改，请勿使用!!")
 public fun <V : View> DialogFragment.bindView(id: Int)
         : ReadOnlyProperty<DialogFragment, V> = required(id, viewFinder)
 
+@Deprecated("受Fragment生命周期影响，lazy形式的赋值，在view重建后无法修改，请勿使用!!")
 public fun <V : View> SupportDialogFragment.bindView(id: Int)
         : ReadOnlyProperty<SupportDialogFragment, V> = required(id, viewFinder)
 
 public fun <V : View> Fragment.bindView(id: Int)
         : ReadOnlyProperty<Fragment, V> = required(id, viewFinder)
 
+@Deprecated("受Fragment生命周期影响，lazy形式的赋值，在view重建后无法修改，请勿使用!!")
 public fun <V : View> BaseFragment.bindView(id: Int)
         : ReadOnlyProperty<BaseFragment, V> = required(id, viewFinder)
 
+@Deprecated("受Fragment生命周期影响，lazy形式的赋值，在view重建后无法修改，请勿使用!!")
 public fun <V : View> SupportFragment.bindView(id: Int)
         : ReadOnlyProperty<SupportFragment, V> = required(id, viewFinder)
 
@@ -72,15 +76,19 @@ public fun <V : View> Activity.bindViews(vararg ids: Int)
 public fun <V : View> Dialog.bindViews(vararg ids: Int)
         : ReadOnlyProperty<Dialog, List<V>> = required(ids, viewFinder)
 
+@Deprecated("受Fragment生命周期影响，lazy形式的赋值，在view重建后无法修改，请勿使用!!")
 public fun <V : View> DialogFragment.bindViews(vararg ids: Int)
         : ReadOnlyProperty<DialogFragment, List<V>> = required(ids, viewFinder)
 
+@Deprecated("受Fragment生命周期影响，lazy形式的赋值，在view重建后无法修改，请勿使用!!")
 public fun <V : View> SupportDialogFragment.bindViews(vararg ids: Int)
         : ReadOnlyProperty<SupportDialogFragment, List<V>> = required(ids, viewFinder)
 
+@Deprecated("受Fragment生命周期影响，lazy形式的赋值，在view重建后无法修改，请勿使用!!")
 public fun <V : View> Fragment.bindViews(vararg ids: Int)
         : ReadOnlyProperty<Fragment, List<V>> = required(ids, viewFinder)
 
+@Deprecated("受Fragment生命周期影响，lazy形式的赋值，在view重建后无法修改，请勿使用!!")
 public fun <V : View> SupportFragment.bindViews(vararg ids: Int)
         : ReadOnlyProperty<SupportFragment, List<V>> = required(ids, viewFinder)
 

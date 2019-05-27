@@ -1,11 +1,9 @@
 package com.ssf.framework.main.mvvm.activity
 
 import android.arch.lifecycle.ViewModelProvider
-import android.databinding.DataBindingUtil
 import android.databinding.ViewDataBinding
 import android.os.Bundle
 import android.support.v4.app.Fragment
-import com.ssf.framework.main.activity.BaseActivity
 import com.ssf.framework.main.mvvm.vm.SuperViewModelProvider
 import dagger.android.AndroidInjection
 import dagger.android.DispatchingAndroidInjector
@@ -28,26 +26,16 @@ abstract class MVVMActivity<T : ViewDataBinding>(
         statusBarColor: Int = 0,
         // StatusBar 透明度 (0 - 255)
         statusBarAlpha: Int = 0
-) : BaseActivity(layoutResID, *ids, swipeBackLayoutEnable = swipeBackLayoutEnable, statusBarColor = statusBarColor, statusBarAlpha = statusBarAlpha),
+) : SupportVMActivity<T>(layoutResID, *ids, swipeBackLayoutEnable = swipeBackLayoutEnable, statusBarColor = statusBarColor, statusBarAlpha = statusBarAlpha),
         HasSupportFragmentInjector {
 
-    // mvvm
-    protected lateinit var binding: T
     @Inject
     lateinit var fragmentInjector: DispatchingAndroidInjector<Fragment>
 
     @Inject
     lateinit var viewModelFactory: ViewModelProvider.Factory
 
-    @Inject
-    lateinit var appViewModelProvider: ViewModelProvider
-
-    val viewModelProvider: ViewModelProvider by lazy {
-        createViewModelProvider()
-    }
-
     override fun supportFragmentInjector() = fragmentInjector
-
 
     override fun onCreate(savedInstanceState: Bundle?) {
         // 注入
@@ -56,20 +44,9 @@ abstract class MVVMActivity<T : ViewDataBinding>(
         super.onCreate(savedInstanceState)
     }
 
-    override fun setContentView() {
-        // 初始化 Binding
-        binding = DataBindingUtil.setContentView(this, layoutResID)
-        binding.setLifecycleOwner(this)
-    }
-
-    /** 回收资源 */
-    override fun onDestroy() {
-        super.onDestroy()
-        binding.unbind()
-    }
-
-    protected fun createViewModelProvider(): ViewModelProvider {
-        return SuperViewModelProvider(this, viewModelFactory, appViewModelProvider)
+    override fun createViewModelProvider(): ViewModelProvider {
+        //从注入的ViewModelFactory获取
+        return SuperViewModelProvider(this, viewModelFactory)
     }
 
 }

@@ -14,6 +14,7 @@ import com.ssf.framework.main.swipebacklayout.app.SwipeBackActivity
 import com.ssf.framework.main.util.StatusBarUtil
 import com.trello.rxlifecycle2.android.ActivityEvent
 import com.umeng.analytics.MobclickAgent
+import com.xm.xlog.KLog
 import io.reactivex.Observable
 import io.reactivex.ObservableEmitter
 import io.reactivex.ObservableOnSubscribe
@@ -73,6 +74,7 @@ abstract class BaseActivity(
                 ids.forEach { id ->
                     if (id != 0) {
                         findViewById<View>(id)?.setOnClickListener(this)
+                                ?: KLog.e(this.javaClass.simpleName, "Could not find view by id=$id...")
                     }
                 }
             }
@@ -86,7 +88,9 @@ abstract class BaseActivity(
         if (statusBarColor != 0) {
             StatusBarUtil.setColor(this, statusBarColor)
         } else {
-            StatusBarUtil.setTranslucentForImageView(this, 0, findViewById(R.id.toolbar))
+            findViewById<View>(R.id.toolbar)?.let {
+                StatusBarUtil.setTranslucentForImageView(this, 0, it)
+            }
         }
     }
 

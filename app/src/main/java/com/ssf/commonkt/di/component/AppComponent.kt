@@ -4,8 +4,6 @@ import android.app.Application
 import com.ssf.commonkt.App
 import com.ssf.commonkt.di.module.AllActivitiesModule
 import com.ssf.commonkt.di.module.AppModule
-import com.ssf.commonkt.di.module.AppViewModelModule
-
 import dagger.BindsInstance
 import dagger.Component
 import dagger.android.AndroidInjectionModule
@@ -24,7 +22,6 @@ import javax.inject.Singleton
             AndroidSupportInjectionModule::class,
             // 全局提供的module
             AppModule::class,
-            AppViewModelModule::class,
             // 每个activity 对应的设计
             AllActivitiesModule::class
         ]

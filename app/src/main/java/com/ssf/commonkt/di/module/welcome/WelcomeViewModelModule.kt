@@ -1,4 +1,4 @@
-package com.ssf.commonkt.ui.welcome
+package com.ssf.commonkt.di.module.welcome
 
 import android.arch.lifecycle.ViewModel
 import com.ssf.commonkt.ui.welcome.WelcomeViewModel
