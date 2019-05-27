@@ -1,6 +1,20 @@
 # CommonKit
 公共组件库
 
+## 如何使用:
+1. 项目根目录gradle添加jitpck.io仓库
+
+` maven { url 'https://jitpack.io' } `
+
+2. 工程引入gradle依赖
+
+` implementation "com.github.tgandroid:CommonKit:v0.0.2" `
+
+  如果只想引入单个子Module，可采用com.github.tgandroid:CommonKit:$module:v0.0.2的方式,例如:
+  
+`.implementation "com.github.tgandroid:CommonKit:auto_layout:v0.0.2" `
+
+## 库介绍
 ### 基础库
 * log :日志相关
 * util : 工具相关
