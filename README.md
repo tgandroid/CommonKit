@@ -1,7 +1,7 @@
 # CommonKit
 公共组件库
 
-使用
+## 如何使用:
 1. 项目根目录gradle添加jitpck.io仓库
 
 ` maven { url 'https://jitpack.io' } `
