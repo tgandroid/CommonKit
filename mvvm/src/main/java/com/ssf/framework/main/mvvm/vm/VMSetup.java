@@ -19,12 +19,24 @@ public class VMSetup {
     @Nullable
     private IObserverProvider defaultObserverProvider;
 
+    @Nullable
+    private IObservableErrorHandle defaultObservableErrorHandle;
+
     public void setDefaultObserverProvider(@NotNull IObserverProvider provider) {
         this.defaultObserverProvider = provider;
+    }
+
+    public void setDefaultObserverProvider(@NotNull IObservableErrorHandle provider) {
+        this.defaultObservableErrorHandle = provider;
     }
 
     @Nullable
     public IObserverProvider getDefaultObserverProvider() {
         return defaultObserverProvider;
+    }
+
+    @Nullable
+    public IObservableErrorHandle getDefaultObservableErrorHandle() {
+        return defaultObservableErrorHandle;
     }
 }
