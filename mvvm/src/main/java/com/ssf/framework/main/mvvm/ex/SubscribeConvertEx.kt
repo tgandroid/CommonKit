@@ -43,7 +43,6 @@ inline fun <T> Observable<T>.subscribeConvert(
             override fun onSubscribe(d: Disposable) {
                 if (iDialog != IDialog.UN_LOADING) {
                     rx.progress.show(message)
-                    1.mod(1)
                 }
             }
 
