@@ -42,6 +42,6 @@ abstract class SupportVMActivity<T : ViewDataBinding>(
     }
 
     open protected fun createViewModelProvider(): ViewModelProvider {
-        return SuperViewModelProvider(this, ViewModelProvider.AndroidViewModelFactory(application))
+        return SuperViewModelProvider(this)
     }
 }

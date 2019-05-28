@@ -1,6 +1,5 @@
 package com.ssf.framework.main.mvvm.activity
 
-import android.app.Application
 import android.arch.lifecycle.ViewModelProvider
 import android.databinding.DataBindingUtil
 import android.databinding.ViewDataBinding
@@ -21,6 +20,10 @@ abstract class SupportVMFragment<T : ViewDataBinding>(
 
     // mvvm
     protected lateinit var binding: T
+
+    val viewModelProvider: ViewModelProvider by lazy {
+        createViewModelProvider()
+    }
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         // dataBinding
@@ -53,6 +56,6 @@ abstract class SupportVMFragment<T : ViewDataBinding>(
     }
 
     protected open fun createViewModelProvider(): ViewModelProvider {
-        return SuperViewModelProvider(this, ViewModelProvider.AndroidViewModelFactory(context!!.applicationContext as Application))
+        return SuperViewModelProvider(this)
     }
 }

@@ -24,10 +24,6 @@ abstract class MVVMFragment<T : ViewDataBinding>(
     @Inject
     lateinit var viewModelFactory: ViewModelProvider.Factory
 
-    val viewModelProvider: ViewModelProvider by lazy {
-        createViewModelProvider()
-    }
-
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         // 注入
         AndroidSupportInjection.inject(this)

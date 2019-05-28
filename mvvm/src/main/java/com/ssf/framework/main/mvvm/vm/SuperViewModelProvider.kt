@@ -10,7 +10,7 @@ import java.lang.RuntimeException
  *
  * Activity级别内共享ViewModel
  */
-class SuperViewModelProvider(private val lifecycleOwner: LifecycleOwner, factory: Factory) : SupportViewModelProvider(
+class SuperViewModelProvider(private val lifecycleOwner: LifecycleOwner, factory: Factory = ViewModelUtil.createFactory(VMSetup.getContext())) : SupportViewModelProvider(
         if (lifecycleOwner is FragmentActivity) {
             lifecycleOwner
         } else if (lifecycleOwner is Fragment && lifecycleOwner.activity != null) {

@@ -1,5 +1,8 @@
 package com.ssf.framework.main.mvvm.vm;
 
+import android.app.Application;
+import android.content.Context;
+
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
@@ -8,12 +11,18 @@ import org.jetbrains.annotations.Nullable;
  */
 public class VMSetup {
     private static VMSetup INSTANCE = new VMSetup();
+    private static Application mContext;
 
     private VMSetup() {
     }
 
     public static VMSetup getInstance() {
         return INSTANCE;
+    }
+
+    public static void init(@Nullable Context context) {
+        if (context == null) return;
+        mContext = ((Application) context.getApplicationContext());
     }
 
     @Nullable
@@ -26,8 +35,8 @@ public class VMSetup {
         this.defaultObserverProvider = provider;
     }
 
-    public void setDefaultObserverProvider(@NotNull IObservableErrorHandle provider) {
-        this.defaultObservableErrorHandle = provider;
+    public void setDefaultObservableErrorHandle(@NotNull IObservableErrorHandle handler) {
+        this.defaultObservableErrorHandle = handler;
     }
 
     @Nullable
@@ -38,5 +47,9 @@ public class VMSetup {
     @Nullable
     public IObservableErrorHandle getDefaultObservableErrorHandle() {
         return defaultObservableErrorHandle;
+    }
+
+    public static Application getContext() {
+        return mContext;
     }
 }
