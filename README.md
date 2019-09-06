@@ -12,7 +12,7 @@
 
   如果只想引入单个子Module，可采用com.github.tgandroid:CommonKit:$module:v0.0.2的方式,例如:
   
-`.implementation "com.github.tgandroid:CommonKit:auto_layout:v0.0.2" `
+` implementation "com.github.tgandroid.CommonKit:auto_layout:v0.0.2" `
 
 ## 库介绍
 ### 基础库
