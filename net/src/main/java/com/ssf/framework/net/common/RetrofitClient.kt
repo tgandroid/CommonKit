@@ -10,8 +10,13 @@ import retrofit2.Retrofit
 import retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory
 import retrofit2.converter.gson.GsonConverterFactory
 import retrofit2.converter.scalars.ScalarsConverterFactory
+import java.security.SecureRandom
 import java.util.*
 import java.util.concurrent.TimeUnit
+import javax.net.ssl.HostnameVerifier
+import javax.net.ssl.SSLContext
+import javax.net.ssl.SSLSocketFactory
+import javax.net.ssl.TrustManager
 
 
 /**
@@ -55,6 +60,13 @@ class RetrofitClient {
                 level = HttpLoggingInterceptor.Level.BODY
                 okHttpBuilder.addInterceptor(this)
             }
+
+            // 忽略https证书
+            if (builder.skipSSLVerify) {
+                val trustManager = SimpleTrustManager()
+                okHttpBuilder.sslSocketFactory(getSSLSocketFactory(trustManager), trustManager)
+                okHttpBuilder.hostnameVerifier(getHostnameVerifier())
+            }
             // 构建
             return Retrofit.Builder()
                     //增加返回值为String的支持
@@ -67,6 +79,18 @@ class RetrofitClient {
                     .baseUrl(builder.baseUrl)
                     .build()
                     .create(cls)
+        }
+
+        private fun getSSLSocketFactory(trustManager: TrustManager): SSLSocketFactory {
+            val sslContext = SSLContext.getInstance("SSL")
+            sslContext.init(null, arrayOf(trustManager), SecureRandom())
+            return sslContext.socketFactory
+        }
+
+        private fun getHostnameVerifier(): HostnameVerifier {
+            return HostnameVerifier { _, _ ->
+                true
+            }
         }
     }
 
@@ -84,6 +108,8 @@ class RetrofitClient {
             val readTimeout: Long = 6,
             // 超时链接 - 默认6秒
             val connectionTimeout: Long = 6,
+            //忽略Https严重
+            val skipSSLVerify: Boolean = false,
             // 头部
             val headers: () -> HashMap<String, String>
     ) {
